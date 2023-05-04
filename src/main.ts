@@ -10,7 +10,20 @@ import { router } from '@/router';
 // Styles
 import '@/styles/main.scss';
 
-createApp(App)
+// Store
+import { createPinia } from 'pinia';
+import { useValorantStore } from './store';
+
+const pinia = createPinia();
+
+const app = createApp(App)
     .use(ElementPlus)
     .use(router)
-    .mount('#app');
+    .use(pinia)
+
+
+router.beforeEach(() => {
+    const valorantStore = useValorantStore();
+})
+    
+app.mount('#app');
