@@ -1,16 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import { Home, Login } from '@/views';
+import { Home, Login, AgentView } from '@/teams/views';
 
 const routes = [
     {
         path: '/',
-        component: Home
+        component: Home,
     },
     {
         path: '/login',
         component: Login,
         name: 'Login'
+    },
+    {
+        path: '/agent/:uuid',
+        component: AgentView,
+        name: 'AgentView'
     }
 ]
 

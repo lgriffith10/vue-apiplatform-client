@@ -15,12 +15,9 @@ export const useGetHeroes = async (): Promise<Agent[] | void> => {
             headers,
         }
     )
-        .then((response: AxiosResponse) => {
-            return response.data
-        })
-        .then((data: Agent[]) => (
-            data
-        ))
+        .then((response: AxiosResponse) =>
+            response.data['hydra:member']
+        )
         .catch(() => {
             window.localStorage.removeItem('token');
             router.push('/login');
