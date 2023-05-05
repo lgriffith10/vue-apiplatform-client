@@ -3,7 +3,10 @@
         <img class="w-full" :src="agent.image" />
         <div class=" px-[10px] pb-[10px] flex justify-between items-center w-full">
             <p class="text-[20px]">{{ agent.displayName }}</p>
+
+            <div class="flex justify-center items-center w-[40px] h-[40px] rounded-[100%] bg-red-500">
             <img :src="agent.roleImg" class="max-w-[30px]" />
+            </div>
         </div>
     </div>
 </template>

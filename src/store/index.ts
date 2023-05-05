@@ -3,7 +3,6 @@ import { defineStore } from "pinia";
 import { Agent } from '@/entities/hero/types';
 
 import { useGetHeroes } from '@/entities/hero/hooks'
-import { AxiosResponse } from "axios";
 
 interface ValorantDataInterface {
     agents: Agent[],
@@ -26,7 +25,7 @@ export const useValorantStore = defineStore('valorant', {
                     )               
             }
         },
-        getAgentByUuid: (state) => (
+        getAgentByUuid: (state: ValorantDataInterface) => (
             (agentUuid: Agent['uuid']) => state.agents.find((agent: Agent) => agentUuid === agent.uuid)
         )
     },
