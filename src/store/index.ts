@@ -30,8 +30,15 @@ export const useValorantStore = defineStore('valorant', {
         )
     },
     actions: {
-        setAgents(agents: Agent[]) {
-            this.agents = agents;
+        setAgents() {
+            if(this.agents.length) {
+                return;
+            }
+
+            useGetHeroes()
+                .then((data) => {
+                    this.agents = data as Agent[];
+                })
         }
     }
 })

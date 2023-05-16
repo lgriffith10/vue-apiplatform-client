@@ -22,8 +22,14 @@ const app = createApp(App)
     .use(pinia)
 
 
-router.beforeEach(() => {
+router.afterEach((to, from) => {
     const valorantStore = useValorantStore();
+
+    if (to.path !== '/login') {
+        return;
+    }
+
+    valorantStore.setAgents();
 })
     
 app.mount('#app');

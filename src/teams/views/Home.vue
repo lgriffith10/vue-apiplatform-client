@@ -15,32 +15,16 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, Ref } from 'vue';
+import { ComputedRef, computed } from 'vue';
 
-import { Agent } from '@/entities/hero/types';
-
-import { useGetHeroes } from '@/entities/hero/hooks';
 import { useValorantStore } from '@/store';
 
 import { AgentCard } from '@/teams/agents';
+import { Agent } from '@/entities/hero/types';
 
 const valorantStore = useValorantStore();
 
-const agents: Ref<Agent[]> = ref([]);
-
-onMounted(() => {
-    if (valorantStore.getAgents?.length) {
-        agents.value = valorantStore.getAgents;
-        
-    } else {
-        useGetHeroes()
-            .then((data: Agent[] | void) => {
-                if (data?.length) {                    
-                    valorantStore.setAgents(data);
-                    agents.value = valorantStore.getAgents as Agent[];
-                }
-            })
-        ;
-    }
-})
+const agents: ComputedRef<Agent[]> = computed(() => 
+    valorantStore.getAgents as Agent[]
+)
 </script>
